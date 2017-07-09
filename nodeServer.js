@@ -25,18 +25,20 @@ dbConnection.query('SELECT DeviceToken AS token, LastAcquisition AS lastSeen FRO
        });
 
 res.forEach(row, () => {
-    notification.device = new apns.Device(row.token);
-    const daysMissing = [.....]; //an array of dates given by each day between date - row.lastSeen;
-    notification.badge = daysMissing.length;
-    dayMissing.foreach(day, () => {
-        var array = [];
-        var d = uuidv5(row.token + ' ' + day , MY_NAMESPACE)
-        array.push(d);
-        return array
-        });
+    const daysMissing = [.....]; //an array of dates made of each date between date - row.lastSeen;
+    if (daysMissing.length !== 0) {
+        notification.device = new apns.Device(row.token);
+        notification.badge = daysMissing.length;
+        dayMissing.foreach(day, () => {
+            var array = [];
+            var d = uuidv5(row.token + ' ' + day , MY_NAMESPACE)
+            array.push(d);
+            return array
+          });
     notification.payload = {"daysToCollect" : array};
     connection.sendNotification(notification);
     });
+  }
 }
 
 setInterval(function () { main() }, (24*60*60*1000));
