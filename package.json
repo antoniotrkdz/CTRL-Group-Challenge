@@ -1,0 +1,22 @@
+{
+  "name": "CTRL-Group-Challenge",
+  "version": "1.0.0",
+  "description": "#### This repo was created using the CLI and the GitHub API:",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoniotrkdz/CTRL-Group-Challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antoniotrkdz/CTRL-Group-Challenge/issues"
+  },
+  "homepage": "https://github.com/antoniotrkdz/CTRL-Group-Challenge#readme"
+}

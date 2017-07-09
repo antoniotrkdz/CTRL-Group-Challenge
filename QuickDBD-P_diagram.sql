@@ -7,6 +7,8 @@ CREATE TABLE "Patient" (
     "Name" varchar(50)  NOT NULL ,
     "PathDay" date  NOT NULL ,
     "CurrMedication" varchar(100)  NOT NULL ,
+    "DeviceToken" varchar(100)  NOT NULL ,
+    "LastAcquisition" date  NOT NULL ,
     CONSTRAINT "pk_Patient" PRIMARY KEY (
         "PatientID"
     )
@@ -30,6 +32,7 @@ GO
 CREATE TABLE "EveningCHK" (
     "CheckID" int  NOT NULL ,
     "PatientID" int  NOT NULL ,
+    "EveningUUID" varchar(100)  NOT NULL ,
     "Date" date  NOT NULL ,
     "Wellbeing" int  NOT NULL ,
     "MedTaken" bool  NOT NULL ,
@@ -46,6 +49,7 @@ GO
 CREATE TABLE "MemoryCHK" (
     "MemoryID" int  NOT NULL ,
     "PatientID" int  NOT NULL ,
+    "MemUUID" varchar(100)  NOT NULL ,
     "Date" date  NOT NULL ,
     "MemScore" int  NOT NULL ,
     "HealthScore" int  NOT NULL ,
