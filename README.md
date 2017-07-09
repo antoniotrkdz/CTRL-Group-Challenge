@@ -4,7 +4,7 @@
 
 `curl -u 'antoniotrkdz' https://api.github.com/user/repos -d '{name:CTRL-Group-Challenge}'`
 
-### The challenge is described [here](.Pathway_app_API_Challenge.pdf).
+### The challenge is described [here](./Pathway_app_API_Challenge.pdf).
 
 Briefly:
 
