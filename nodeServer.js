@@ -1,17 +1,46 @@
 const dbconnection = require('./somewhere/dbconnection.js');
 const uuidv4 = require('uuid/v4');
 const uuidv5 = require('uuid/v5');
-const MY_NAMESPACE = uuidv4();
+const MY_NAMESPACE = uuidv4();
 
-const apns = require("apns"), options, connection, notification;
+var moment = require('moment');
 
-options = {
-  some.certificate.options
+const apns = require("apns");
+const options = {
+    keyFile : "conf/key.pem",
+    certFile : "conf/cert.pem",
+    debug : true
 };
+const connection = new apns.Connection(options);
+const notification = new apns.Notification();
 
-connection = new apns.Connection(options);
+//const missingDays = lastReportData => {
+const arrayOfMissingDates = lastAcquiredDate => {
+    moment.locale('gb')
+    var arrayOfDates = [];
+    var currentDate = moment(lastAcquiredDate);
+    var today = moment();
+    while (moment(currentDate) <= today) {
+        arrayOfDates.push(moment(currentDate).format('L'));
+        currentDate = moment(currentDate).add(1, 'days');
+    }
+    return arrayOfDates;
+}
 
-notification = new apns.Notification();
+const notifyUserOfMissingDays = userData => {
+  const daysMissing = missingDays(row.lastSeen);
+
+  if (daysMissing.length !== 0) {
+    notification.payload = {"daysToCollect" : daysMissing};
+    notification.device = new apns.Device(row.token);
+    notification.badge = daysMissing.length;
+    connection.sendNotification(notification);
+  }
+}
+
+const getLastAcquisitionsQuery =
+  'SELECT PatientID AS token, LastAcquisition AS lastSeen FROM Patients'
+
 
 function main() {
 

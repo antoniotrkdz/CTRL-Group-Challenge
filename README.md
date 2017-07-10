@@ -8,8 +8,8 @@
 
 Briefly:
 
-Build a Back-end that can deal
->with clients that send data intermittently over long periods
+Build a Back-end that can deal with
+>clients that send data intermittently over long periods
 of time, and may or may not be offline when used.
 
 And that helps on this front too:
@@ -22,6 +22,7 @@ The first solution that came to my mind was to use [Socket.io](https://socket.io
 which allow real time bi-directional communications between devices.
 
 It could be a viable solution, but I thought that a better way to reach the goal is to use Push Notifications. Namely APNs (Apple Push Notification service).
+![APNs_diagram](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/remote_notif_simple_2x.png)
 
 Usually this system is used to deliver content from a provider to apple devices (and their users), but according to [this IBM source](https://www.ibm.com/support/knowledgecenter/en/SSYRPW_9.0.1/APNS.html).
 >Based on the device configuration, APNS messages can cause the device to change the app badge count, show an alert, and so on. [...], __APNS messages can also cause the app to sync in the background__.

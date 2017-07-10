@@ -2,14 +2,14 @@
 -- Link to schema: https://app.quickdatabasediagrams.com/#/schema/KgUr_DC3z0q4nQshiD3UFw
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
-CREATE TABLE "Patient" (
+CREATE TABLE "Patients" (
     "PatientID" int  NOT NULL ,
     "Name" varchar(50)  NOT NULL ,
     "PathDay" date  NOT NULL ,
     "CurrMedication" varchar(100)  NOT NULL ,
     "DeviceToken" varchar(100)  NOT NULL ,
-    "LastAcquisition" date  NOT NULL ,
-    CONSTRAINT "pk_Patient" PRIMARY KEY (
+    "LastAcquisitionDate" date  NOT NULL ,
+    CONSTRAINT "pk_Patients" PRIMARY KEY (
         "PatientID"
     )
 )
@@ -53,6 +53,7 @@ CREATE TABLE "MemoryCHK" (
     "Date" date  NOT NULL ,
     "MemScore" int  NOT NULL ,
     "HealthScore" int  NOT NULL ,
+    "lastAquisitionDate" date  NOT NULL ,
     CONSTRAINT "pk_MemoryCHK" PRIMARY KEY (
         "MemoryID"
     )
@@ -61,14 +62,14 @@ CREATE TABLE "MemoryCHK" (
 GO
 
 ALTER TABLE "History" ADD CONSTRAINT "fk_History_PatientID" FOREIGN KEY("PatientID")
-REFERENCES "Patient" ("PatientID")
+REFERENCES "Patients" ("PatientID")
 GO
 
 ALTER TABLE "EveningCHK" ADD CONSTRAINT "fk_EveningCHK_PatientID" FOREIGN KEY("PatientID")
-REFERENCES "Patient" ("PatientID")
+REFERENCES "Patients" ("PatientID")
 GO
 
 ALTER TABLE "MemoryCHK" ADD CONSTRAINT "fk_MemoryCHK_PatientID" FOREIGN KEY("PatientID")
-REFERENCES "Patient" ("PatientID")
+REFERENCES "Patients" ("PatientID")
 GO
 
