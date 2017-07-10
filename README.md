@@ -22,6 +22,7 @@ The first solution that came to my mind was to use [Socket.io](https://socket.io
 which allow real time bi-directional communications between devices.
 
 It could be a viable solution, but I thought that a better way to reach the goal is to use Push Notifications. Namely APNs (Apple Push Notification service).
+
 ![APNs_diagram](http://serverdensity.wpengine.com/wp-content/uploads/2009/07/remote_notif_simple.jpg)
 
 Usually this system is used to deliver content from a provider to apple devices (and their users), but according to [this IBM source](https://www.ibm.com/support/knowledgecenter/en/SSYRPW_9.0.1/APNS.html).

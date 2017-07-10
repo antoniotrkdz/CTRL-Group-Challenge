@@ -46,15 +46,15 @@ CREATE TABLE "EveningCHK" (
 
 GO
 
-CREATE TABLE "MemoryCHK" (
+CREATE TABLE "FortnightCHK" (
     "MemoryID" int  NOT NULL ,
     "PatientID" int  NOT NULL ,
     "MemUUID" varchar(100)  NOT NULL ,
     "Date" date  NOT NULL ,
     "MemScore" int  NOT NULL ,
     "HealthScore" int  NOT NULL ,
-    "lastAquisitionDate" date  NOT NULL ,
-    CONSTRAINT "pk_MemoryCHK" PRIMARY KEY (
+    "FortnightLastAqDate" date  NULL ,
+    CONSTRAINT "pk_FortnightCHK" PRIMARY KEY (
         "MemoryID"
     )
 )
@@ -69,7 +69,7 @@ ALTER TABLE "EveningCHK" ADD CONSTRAINT "fk_EveningCHK_PatientID" FOREIGN KEY("P
 REFERENCES "Patients" ("PatientID")
 GO
 
-ALTER TABLE "MemoryCHK" ADD CONSTRAINT "fk_MemoryCHK_PatientID" FOREIGN KEY("PatientID")
+ALTER TABLE "FortnightCHK" ADD CONSTRAINT "fk_FortnightCHK_PatientID" FOREIGN KEY("PatientID")
 REFERENCES "Patients" ("PatientID")
 GO
 
