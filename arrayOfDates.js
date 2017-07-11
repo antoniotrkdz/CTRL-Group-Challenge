@@ -1,4 +1,4 @@
-const arrayOfMissingDates = lastAcquiredDate => {
+var arrayOfMissingDates = lastAcquiredDate => {
     moment.locale('gb')
     var arrayOfDates = [];
     var currentDate = moment(lastAcquiredDate);
