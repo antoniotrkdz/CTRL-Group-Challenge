@@ -19,7 +19,7 @@ GO
 CREATE TABLE "History" (
     "HistoryID" int  NOT NULL ,
     "PatientID" int  NOT NULL ,
-    "Medications" varchar(1000)  NOT NULL ,
+    "Medications" varchar(200)  NOT NULL ,
     "StartDay" date  NOT NULL ,
     "EndDay" date  NULL ,
     CONSTRAINT "pk_History" PRIMARY KEY (
@@ -37,8 +37,8 @@ CREATE TABLE "EveningCHK" (
     "Wellbeing" int  NOT NULL ,
     "MedTaken" bool  NOT NULL ,
     "MoodScore" int  NOT NULL ,
-    "SideEffects" varchar(250)  NOT NULL ,
-    "OtherSE" varchar(100)  NOT NULL ,
+    "SideEffects" text[]  NOT NULL ,
+    "OtherSE" varchar(200)  NOT NULL ,
     CONSTRAINT "pk_EveningCHK" PRIMARY KEY (
         "CheckID"
     )
