@@ -53,23 +53,23 @@ new CronJob('* */12 * * *', function() { //run every 12 hours.
 const query = `INSERT INTO Patients (Name, CurrentMedication, DeviceToken)
     VALUES ($1, $2)', (SELECT PatientID FROM Patients WHERE users.username = '$3'));`
 
-server.route({
-        method: 'GET',
-        path: '/???',
-        handler: {
-            (req, reply) => {
-                const date = new Date().toDateString().slice(4);
-                dbConnection.query(query, [req.payload.name, req.payload.CurrentMedication],
-                (err, res) => {
-                  /* do not return from async cb!!!!! */
-                  // this is not how javascript works (or any language that has async cb funcs)
-                    if (err) {
-                        return err;
-                    }
-
-                    // What are you doing with the response??
-
-                }
-              });
-        }
-}
+// server.route({
+//         method: 'GET',
+//         path: '/???',
+//         handler: {
+//             (req, reply) => {
+//                 const date = new Date().toDateString().slice(4);
+//                 dbConnection.query(query, [req.payload.name, req.payload.CurrentMedication],
+//                 (err, res) => {
+//                   /* do not return from async cb!!!!! */
+//                   // this is not how javascript works (or any language that has async cb funcs)
+//                     if (err) {
+//                         return err;
+//                     }
+//
+//                     // What are you doing with the response??
+//
+//                 }
+//               }
+//         }
+// }

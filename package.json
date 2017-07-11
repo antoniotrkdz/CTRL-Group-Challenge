@@ -4,9 +4,13 @@
   "description": "#### This repo was created using the CLI and the GitHub API:",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.7.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
