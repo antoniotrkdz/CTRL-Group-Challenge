@@ -5,12 +5,11 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "jest": "^20.0.4",
     "tap-spec": "^4.1.1",
     "tape": "^4.7.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "node arrayOfDates.test.js | tap-spec"
   },
   "repository": {
     "type": "git",

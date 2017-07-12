@@ -1,9 +1,5 @@
 # CTRL-Group-Challenge
 
-#### This repo was created using the CLI and the GitHub API:
-
-`curl -u 'antoniotrkdz' https://api.github.com/user/repos -d '{name:CTRL-Group-Challenge}'`
-
 ### The challenge is described [here](./Pathway_app_API_Challenge.pdf).
 
 Briefly:
@@ -55,8 +51,9 @@ This version allows to encode UUID from arbitrary strings, such as the PatientID
 
 When on line and upon verification of the UUIDs the remote device sends back the requested data to the server.
 
-The [file](./nodeServer.js) includes also the code that will take care of the endpoint that remote devices reach on posting the collected data.
-the lastAcquisition field and the relative fields will be update only when there is no other entry with the same UUID. This will grant data
+On the server endpoint front (where the remote devices get routed to posting the collected data) the lastAcquisition field gets updated on successful transmission of data and the relative fields of the EveningCHK and ForthnighCHK will be update only when there is no other entry with the same UUID.
+This can be easily controlled with the PostgresSQL ON CONFLICT DO NOTHING feature.
+This will avoid duplication and grant data
 >retention and validity on the server [...].
 
-An elagant example of an alternative sytem is represented by [IBM's Loopback](https://strongloop.com/strongblog/node-js-api-offline-sync-replication/), only available for client side Angularjs and JavaScript web apps. 
+An elagant example of an alternative sytem is represented by [IBM's Loopback](https://strongloop.com/strongblog/node-js-api-offline-sync-replication/), only available for client side Angularjs and JavaScript web apps.

@@ -1,6 +1,8 @@
+//This code is for demostration only, it will NOT run//
+
 const dbconnection = require('./somewhere/dbconnection.js');
-const moment = require('moment');
-var CronJob = require('cron').CronJob;
+const moment = require('moment'); //required for easy and precice date operations.
+var CronJob = require('cron').CronJob; //nice tool for repetitive tasks
 const apns = require("apns");
 const options = {
     keyFile : "conf/key.pem",
@@ -10,7 +12,8 @@ const options = {
 const connection = new apns.Connection(options);
 const notification = new apns.Notification();
 
-//const missingDays = lastReportData => {
+
+//This function creates an array of days from lastAcquiredDate to today.
 const arrayOfMissingDates = lastAcquiredDate => {
     moment.locale('gb')
     var arrayOfDates = [];
@@ -23,6 +26,8 @@ const arrayOfMissingDates = lastAcquiredDate => {
     return arrayOfDates;
 }
 
+/*This function assembles and sends the notification to the APNs
+It does it for each PatientID of the table Patients*/
 const notifyUserOfMissingDays = userData => {
   const daysMissing = missingDays(row.lastSeen);
 
@@ -34,10 +39,20 @@ const notifyUserOfMissingDays = userData => {
   }
 }
 
+/*PostgresSQL query to get the array of Patients.
+should include also those due for the forthnight acquisition*/
 const getLastAcquisitionsQuery =
-  'SELECT PatientID, DeviceToken AS token, LastAcquisition AS lastSeen FROM Patients'
+    `SELECT Patients.PatientID,
+            Patients.DeviceToken AS token,
+            Patients.LastAcquisition AS lastSeen,
+            ForthnighCHK.FortnightLastAqDate
+            FROM Patients
+              LEFT JOIN ForthnighCHK
+                ON Patients.PatientID = ForthnighCHK.PatientID AND
+                FortnightLastAqDate BETWEEN now()::timestamp - (interval '2w') and
+                now()::timestamp;`
 
-new CronJob('* */12 * * *', function() { //run every 12 hours.
+new CronJob('* */12 * * *', function() { //runs every 12 hours.
     dbConnection.query(getLastAcquisitionsQuery, (err, res) => {
         if (err) console.error(`
             failed to retrieve data for last user acquisition.
@@ -47,29 +62,3 @@ new CronJob('* */12 * * *', function() { //run every 12 hours.
           res.rows.forEach(notifyUserOfMissingDays)
       });
     }, null, true, 'Europe/London');
-
-//Server endpoints----------------------------------------------------------------------
-
-const query = `INSERT INTO Patients (Name, CurrentMedication, DeviceToken)
-    VALUES ($1, $2)', (SELECT PatientID FROM Patients WHERE users.username = '$3'));`
-
-// server.route({
-//         method: 'GET',
-//         path: '/???',
-//         handler: {
-//             (req, reply) => {
-//                 const date = new Date().toDateString().slice(4);
-//                 dbConnection.query(query, [req.payload.name, req.payload.CurrentMedication],
-//                 (err, res) => {
-//                   /* do not return from async cb!!!!! */
-//                   // this is not how javascript works (or any language that has async cb funcs)
-//                     if (err) {
-//                         return err;
-//                     }
-//
-//                     // What are you doing with the response??
-//
-//                 }
-//               }
-//         }
-// }
