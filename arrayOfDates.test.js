@@ -1,5 +1,5 @@
 /*Small test of the function which assembles the array of dates missig from the Patients.
-using tape + tap-spec. Use 'node arrayOfDates.test.js' to run.*/
+using tape + tap-spec. Use 'npm test' to run it.*/
 const moment = require('moment');
 
 var arrayOfMissingDates = lastAcquiredDate => {
